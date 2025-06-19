@@ -7,13 +7,13 @@ def main():
     url = "https://www.daxformatter.com/?embed=1"
 
     if sys.stdin.isatty():
-        print("No content given")
+        print("No content given", file=sys.stderr)
         return
 
     dax_code = sys.stdin.read().strip()
 
     if not dax_code:
-        print("No content given")
+        print("No content given", file=sys.stderr)
         return
 
     data = {
@@ -21,7 +21,11 @@ def main():
         'fx': dax_code
     }
 
-    response = requests.post(url, data=data)
+    try:
+        response = requests.post(url, data=data, timeout=10)
+    except requests.exceptions.RequestException as e:
+        print(f"Network error: {e}", file=sys.stderr)
+        return
 
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
