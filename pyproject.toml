@@ -7,8 +7,12 @@ requires-python = ">=3.13"
 dependencies = [
     "beautifulsoup4>=4.13.4",
     "requests>=2.32.4",
-    "ruff>=0.12.0",
 ]
 
 [project.scripts]
 daxfmt = "daxfmt.main:main"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.0",
+]

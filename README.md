@@ -62,7 +62,6 @@ CALCULATE (
 
 - `beautifulsoup4` - For parsing HTML responses
 - `requests` - For making HTTP requests
-- `ruff` - For code formatting and linting
 
 ## How it works
 
